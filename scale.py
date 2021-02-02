@@ -1,6 +1,4 @@
 import requests
-from io import BytesIO
-from PIL import Image
 
 
 class Scale:
@@ -29,9 +27,12 @@ class Scale:
             "l": level}
         return requests.get(map_server, params=map_params).content
 
-
-sc = Scale()
-# sc.scale_down(3)
-# sc.scale_down(5)
-a, b = str(sc.get_scale()), str(sc.get_scale())
-Image.open(BytesIO(sc.get_image((37.530887, 55.703118)))).show()
+# тест
+# ------------------------------
+# from io import BytesIO
+# from PIL import Image
+# sc = Scale()
+# # sc.scale_down(3)
+# # sc.scale_down(5)
+# a, b = str(sc.get_scale()), str(sc.get_scale())
+# Image.open(BytesIO(sc.get_image((37.530887, 55.703118)))).show()
