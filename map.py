@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from io import BytesIO
 # Этот класс поможет нам сделать картинку из потока байт
 
@@ -32,8 +31,7 @@ class Map:
         }
         response = requests.get(api_server, params=params)
 
-        Image.open(BytesIO(
-            response.content)).show()
+        return Image.open(BytesIO(response.content))
 
     def shift(self, button):
         eval(buttons[button])
