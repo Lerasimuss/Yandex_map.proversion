@@ -9,14 +9,15 @@ class Scale:
         return self.scale
 
     def set_scale(self, scale):
-        self.scale = scale
+        if 0 < scale <= 180:
+            self.scale = scale
 
     def scale_up(self, scale=0.1):
-        if 0 <= self.scale + scale <= 180:
+        if 0 < self.scale + scale <= 180:
             self.scale += scale
 
     def scale_down(self, scale=0.1):
-        if 0 <= self.scale - scale <= 180:
+        if 0 < self.scale - scale <= 180:
             self.scale -= scale
 
     def get_image(self, ll, level='map'):
