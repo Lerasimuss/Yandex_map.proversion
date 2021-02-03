@@ -5,19 +5,12 @@ import requests
 from PIL import Image
 
 
-
 class Map:
-
-
     def __init__(self, x, y, scale):
-        self.pos_x = x
-        self.pos_y = y
+        self.x = x
+        self.y = y
         self.scale = scale
-        self.buttons = {'left': 'self.x -= 10',
-               'right': 'self.x += 10',
-               'up': 'self.y += 10',
-               'down': 'self.y -= 10'
-               }
+        self.get_map(self.x, self.y, self.scale)
 
     def get_map(self, x, y, scale):
         api_server = "http://static-maps.yandex.ru/1.x/"
@@ -32,8 +25,16 @@ class Map:
         }
         response = requests.get(api_server, params=params)
 
-        return Image.open(BytesIO(response.content))
+        map_file = "map.png"
+        with open(map_file, "wb") as file:
+            file.write(response.content)
 
     def shift(self, button):
-        eval(self.buttons[button])
-        return self.get_map()
+        if button == "up":
+            return self.y + 5
+        if button == "down":
+            return self.y - 5
+        if button == "right":
+            return self.x + 5
+        if button == "left":
+            return self.x - 5

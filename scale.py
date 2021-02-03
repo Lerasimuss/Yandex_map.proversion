@@ -2,7 +2,7 @@ import requests
 
 
 class Scale:
-    def __init__(self, scale=10):
+    def __init__(self, scale=4):
         self.scale = scale
 
     def get_scale(self):
@@ -15,10 +15,12 @@ class Scale:
     def scale_up(self, scale=0.1):
         if 0 < self.scale + scale <= 180:
             self.scale += scale
+        return self.scale
 
     def scale_down(self, scale=0.1):
         if 0 < self.scale - scale <= 180:
             self.scale -= scale
+        return self.scale
 
     def get_image(self, ll, level='map'):
         map_server = "http://static-maps.yandex.ru/1.x/"
